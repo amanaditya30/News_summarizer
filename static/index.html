@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI News Summarizer</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <main class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <i class="fa-solid fa-newspaper logo-icon"></i>
+                <span class="logo-text">Pulse<span class="highlight">News</span></span>
+            </div>
+            <p class="tagline">Search & Summarize Global News Instantly with AI</p>
+        </header>
+
+        <section class="search-section">
+            <form id="summarize-form" class="search-form">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input 
+                        type="text" 
+                        id="news-topic-input" 
+                        placeholder="Enter any topic (e.g., Quantum Computing, SpaceX, AI tools...)" 
+                        required 
+                        autocomplete="off"
+                    >
+                </div>
+                <button type="submit" id="submit-btn" class="btn btn-primary">
+                    <span class="btn-text">Summarize News</span>
+                    <i class="fa-solid fa-wand-magic-sparkles btn-icon"></i>
+                </button>
+            </form>
+
+            <div class="suggestions-container">
+                <span class="suggestions-label">Suggestions:</span>
+                <div class="tags-wrapper">
+                    <button type="button" class="tag-btn" data-topic="Artificial Intelligence">Artificial Intelligence</button>
+                    <button type="button" class="tag-btn" data-topic="Space Exploration">Space Exploration</button>
+                    <button type="button" class="tag-btn" data-topic="Renewable Energy">Renewable Energy</button>
+                    <button type="button" class="tag-btn" data-topic="Robotics">Robotics</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <!-- Loading State -->
+            <div id="loading-state" class="loading-state hidden">
+                <div class="spinner-wrapper">
+                    <div class="spinner"></div>
+                    <div class="spinner-glow"></div>
+                </div>
+                <h3 class="loading-title">Fetching the latest news...</h3>
+                <p class="loading-subtitle">Tavily is browsing web results & ChatGroq is generating bullet points.</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error-card" class="error-card hidden">
+                <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                <div class="error-content">
+                    <h4 class="error-title">Oops! Something went wrong</h4>
+                    <p id="error-message" class="error-msg">Failed to retrieve news. Please check your API keys or try again.</p>
+                </div>
+            </div>
+
+            <!-- Results Display -->
+            <div id="results-card" class="results-card hidden">
+                <div class="card-header">
+                    <div class="topic-indicator">
+                        <i class="fa-solid fa-circle-nodes icon-topic"></i>
+                        <span id="result-topic-name">Topic Summary</span>
+                    </div>
+                    <button id="copy-btn" class="btn btn-copy" title="Copy to Clipboard">
+                        <i class="fa-regular fa-copy"></i> Copy
+                    </button>
+                </div>
+                <div class="card-body">
+                    <ul id="summary-list" class="summary-list">
+                        <!-- Bullet points injected here -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        Powered by <strong>LangChain</strong>, <strong>Tavily Search</strong>, and <strong>Groq Cloud</strong>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
